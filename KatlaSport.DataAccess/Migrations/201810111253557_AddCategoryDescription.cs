@@ -2,6 +2,9 @@ namespace KatlaSport.DataAccess.Migrations
 {
     using System.Data.Entity.Migrations;
 
+    /// <summary>
+    /// Migration that adds category_description column.
+    /// </summary>
     public partial class AddCategoryDescription : DbMigration
     {
         public override void Up()
