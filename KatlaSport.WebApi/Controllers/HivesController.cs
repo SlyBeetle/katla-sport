@@ -79,7 +79,7 @@ namespace KatlaSport.WebApi.Controllers
 
         [HttpPut]
         [Route("{id:int:min(1)}")]
-        [SwaggerResponse(HttpStatusCode.NoContent, Description = "Updates an existed hives.")]
+        [SwaggerResponse(HttpStatusCode.NoContent, Description = "Updates an existed hive.")]
         [SwaggerResponse(HttpStatusCode.BadRequest)]
         [SwaggerResponse(HttpStatusCode.Conflict)]
         [SwaggerResponse(HttpStatusCode.NotFound)]
