@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HiveSectionListItem } from '../models/hive-section-list-item';
-import { HiveService } from '../services/hive.service';
+import { HiveSectionService } from '../services/hive-section.service';
 
 @Component({
   selector: 'app-hive-section-list',
@@ -16,7 +16,7 @@ export class HiveSectionListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private hiveService: HiveService
+    private hiveSectionService: HiveSectionService
   ) { }
 
   ngOnInit() {
@@ -27,16 +27,16 @@ export class HiveSectionListComponent implements OnInit {
   }
 
   getHiveSections() {
-    this.hiveService.getHiveSections(this.hiveId).subscribe(s => this.hiveSections = s);
+    this.hiveSectionService.getHiveSections().subscribe(s => this.hiveSections = s);
   }
 
   onDelete(hiveSectionId: number) {
     var hiveSection = this.hiveSections.find(s => s.id == hiveSectionId);
-    this.hiveService.setHiveSectionStatus(hiveSectionId, true).subscribe(c => hiveSection.isDeleted = true);
+    this.hiveSectionService.setHiveSectionStatus(hiveSectionId, true).subscribe(c => hiveSection.isDeleted = true);
   }
 
   onUndelete(hiveSectionId: number) {
     var hiveSection = this.hiveSections.find(h => h.id == hiveSectionId);
-    this.hiveService.setHiveSectionStatus(hiveSectionId, false).subscribe(c => hiveSection.isDeleted = false);
+    this.hiveSectionService.setHiveSectionStatus(hiveSectionId, false).subscribe(c => hiveSection.isDeleted = false);
   }
 }
