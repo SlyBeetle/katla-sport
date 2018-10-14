@@ -84,14 +84,14 @@ namespace KatlaSport.Services.HiveManagement
         public async Task<Hive> UpdateHiveAsync(int hiveId, UpdateHiveRequest updateRequest)
         {
             var dbHives = await _context.Hives
-                .Where(p => p.Code == updateRequest.Code && p.Id != hiveId)
+                .Where(h => h.Code == updateRequest.Code && h.Id != hiveId)
                 .ToArrayAsync().ConfigureAwait(false);
             if (dbHives.Length > 0)
             {
                 throw new RequestedResourceHasConflictException("code");
             }
 
-            dbHives = await _context.Hives.Where(p => p.Id == hiveId).ToArrayAsync().ConfigureAwait(false);
+            dbHives = await _context.Hives.Where(h => h.Id == hiveId).ToArrayAsync().ConfigureAwait(false);
             if (dbHives.Length == 0)
             {
                 throw new RequestedResourceNotFoundException();
@@ -110,7 +110,7 @@ namespace KatlaSport.Services.HiveManagement
         /// <inheritdoc/>
         public async Task DeleteHiveAsync(int hiveId)
         {
-            var dbHives = await _context.Hives.Where(p => p.Id == hiveId).ToArrayAsync().ConfigureAwait(false);
+            var dbHives = await _context.Hives.Where(h => h.Id == hiveId).ToArrayAsync().ConfigureAwait(false);
             if (dbHives.Length == 0)
             {
                 throw new RequestedResourceNotFoundException();
